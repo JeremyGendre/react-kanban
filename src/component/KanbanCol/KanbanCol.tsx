@@ -1,9 +1,18 @@
 import './KanbanCol.css';
+import {PropsWithChildren} from "react";
 
-export default function KanbanCol(){
+
+interface KanbanColProps {
+    title: string
+}
+
+export default function KanbanCol({children, title}: PropsWithChildren<KanbanColProps>){
     return (
         <div>
-            col
+            <div>{title}</div>
+            <div>
+                {children}
+            </div>
         </div>
     );
 }
