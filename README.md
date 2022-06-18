@@ -2,7 +2,7 @@
 
 ## Usage
 
-```typescript jsx
+```jsx harmony
 <Kanban>
     <Kanban.Col title="col1">
         <Kanban.Item>item1</Kanban.Item>
