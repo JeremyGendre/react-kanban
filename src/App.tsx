@@ -1,5 +1,9 @@
+import {Kanban} from "./component";
+
 export default function App(){
     return (
-        <div>app</div>
+        <div>
+            <Kanban collections={[]}/>
+        </div>
     );
 }
