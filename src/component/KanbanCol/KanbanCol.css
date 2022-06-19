@@ -5,9 +5,16 @@
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
-.kanban-title{
+.kanban-col-title{
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 0.3em;
+    padding: 0 0.5em;
+    margin-bottom: 1em;
     width: 10em;
+}
+
+.kanban-col-item-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.5em;
 }

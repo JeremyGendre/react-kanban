@@ -9,8 +9,8 @@ interface KanbanColProps {
 export default function KanbanCol({children, title}: PropsWithChildren<KanbanColProps>){
     return (
         <div className="kanban-col">
-            <div className="kanban-title">{title}</div>
-            <div>
+            <div className="kanban-col-title">{title}</div>
+            <div className="kanban-col-item-container">
                 {children}
             </div>
         </div>

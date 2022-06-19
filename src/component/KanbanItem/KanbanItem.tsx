@@ -3,7 +3,7 @@ import {PropsWithChildren} from "react";
 
 export default function KanbanItem({children}: PropsWithChildren<{}>){
     return (
-        <div>
+        <div className="kanban-item">
             {children}
         </div>
     )

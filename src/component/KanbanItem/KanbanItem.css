@@ -1,0 +1,10 @@
+.kanban-item{
+    background-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.5em;
+    transition: all 0.15s ease-in-out;
+}
+.kanban-item:hover{
+    background-color: #f8f8f8;
+}
