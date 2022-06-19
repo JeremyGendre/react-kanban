@@ -32,7 +32,7 @@ export default function NewKanban({onNew}:NewKanbanProps){
     return (
         <form onSubmit={handleNewColumn} className="d-flex flex-col gap-1">
             <div>
-                <Input required value={title} placeholder="Column name" onChange={e => setTitle(e.target.value)}/>
+                <Input autoFocus required value={title} placeholder="Column name" onChange={e => setTitle(e.target.value)}/>
             </div>
             <div className="d-flex gap-1">
                 <Button small type="submit">Ajouter</Button>
