@@ -1,9 +1,13 @@
 import {PropsWithChildren} from "react";
 import './Button.css';
 
-export default function Button({children, className, ...other}:PropsWithChildren<Partial<JSX.IntrinsicElements['button']>>){
+interface ButtonProps extends Partial<JSX.IntrinsicElements['button']>{
+    small?: boolean
+}
+
+export default function Button({children, small, className, ...other}:PropsWithChildren<ButtonProps>){
     return (
-        <button className={`button ${className}`} {...other}>
+        <button className={`button ${small ? 'button-small' : ''} ${className}`} {...other}>
             {children}
         </button>
     );

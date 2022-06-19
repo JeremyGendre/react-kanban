@@ -10,6 +10,9 @@
     display: flex;
     gap: 0.5em;
 }
+.button-small{
+    padding: 0.4em 0.6em;
+}
 
 .button:hover{
     background-color: white;

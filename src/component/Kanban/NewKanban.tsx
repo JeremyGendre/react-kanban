@@ -2,6 +2,7 @@ import {ColumnType} from "../../model/Kanban.model";
 import {FormEvent, useState} from "react";
 import PlusIcon from "../icons/PlusIcon";
 import Button from "../Button/Button";
+import Input from "../Input/Input";
 
 interface NewKanbanProps {
     onNew: (column: ColumnType) => void
@@ -13,6 +14,7 @@ export default function NewKanban({onNew}:NewKanbanProps){
 
     const handleNewColumn = (e:FormEvent) => {
         e.preventDefault();
+        if(!title) return;
         const newColumn: ColumnType = { title, items: [] };
         onNew(newColumn);
         setTitle('');
@@ -29,13 +31,13 @@ export default function NewKanban({onNew}:NewKanbanProps){
 
     return (
         <form onSubmit={handleNewColumn} className="d-flex">
-            <div className="my-auto d-flex flex-col">
+            <div className="my-auto d-flex flex-col gap-1">
                 <div>
-                    <input value={title} onChange={e => setTitle(e.target.value)}/>
+                    <Input required value={title} placeholder="Column name" onChange={e => setTitle(e.target.value)}/>
                 </div>
-                <div>
-                    <button type="submit">Ajouter</button>
-                    <button type="button" onClick={() => setShowForm(false)}>Annuler</button>
+                <div className="d-flex gap-1">
+                    <Button small type="submit">Ajouter</Button>
+                    <Button small type="button" onClick={() => setShowForm(false)}>Annuler</Button>
                 </div>
             </div>
         </form>
