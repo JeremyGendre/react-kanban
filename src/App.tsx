@@ -29,7 +29,7 @@ const initialCollection: ColumnType[] = [
 export default function App(){
     const [collection, setCollection] = useState<ColumnType[]>(initialCollection);
     return (
-        <div>
+        <div className="h-screen">
             <Kanban collection={collection}/>
         </div>
     );

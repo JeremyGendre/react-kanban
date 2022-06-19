@@ -1,0 +1,13 @@
+.kanban-col{
+    padding: 0.5em;
+    background-color: #e6e6e6;
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.kanban-title{
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 0.3em;
+    width: 10em;
+}

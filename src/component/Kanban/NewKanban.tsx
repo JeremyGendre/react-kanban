@@ -22,7 +22,7 @@ export default function NewKanban({onNew}:NewKanbanProps){
     };
 
     if(!showForm) return (
-        <div className="d-flex align-items-center">
+        <div>
             <Button type="button" onClick={() => setShowForm(true)}>
                 add column <PlusIcon className="my-auto" style={{width:'1em'}}/>
             </Button>
@@ -30,15 +30,13 @@ export default function NewKanban({onNew}:NewKanbanProps){
     );
 
     return (
-        <form onSubmit={handleNewColumn} className="d-flex">
-            <div className="my-auto d-flex flex-col gap-1">
-                <div>
-                    <Input required value={title} placeholder="Column name" onChange={e => setTitle(e.target.value)}/>
-                </div>
-                <div className="d-flex gap-1">
-                    <Button small type="submit">Ajouter</Button>
-                    <Button small type="button" onClick={() => setShowForm(false)}>Annuler</Button>
-                </div>
+        <form onSubmit={handleNewColumn} className="d-flex flex-col gap-1">
+            <div>
+                <Input required value={title} placeholder="Column name" onChange={e => setTitle(e.target.value)}/>
+            </div>
+            <div className="d-flex gap-1">
+                <Button small type="submit">Ajouter</Button>
+                <Button small type="button" onClick={() => setShowForm(false)}>Annuler</Button>
             </div>
         </form>
     );

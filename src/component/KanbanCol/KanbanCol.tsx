@@ -8,8 +8,8 @@ interface KanbanColProps {
 
 export default function KanbanCol({children, title}: PropsWithChildren<KanbanColProps>){
     return (
-        <div>
-            <div>{title}</div>
+        <div className="kanban-col">
+            <div className="kanban-title">{title}</div>
             <div>
                 {children}
             </div>
