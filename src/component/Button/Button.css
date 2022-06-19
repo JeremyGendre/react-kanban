@@ -13,8 +13,21 @@
 .button-small{
     padding: 0.4em 0.6em;
 }
+.button-uncolored{
+    color:rgba(0,0,0,0.8);
+    background-color: transparent;
+    border: none;
+}
+.button-icon{
+    padding:0.5em;
+}
 
-.button:hover{
+
+.button-uncolored:hover{
+    background-color: #d4d4d4;
+}
+
+.button:not(.button-uncolored):hover{
     background-color: white;
     color: var(--primary);
 }
