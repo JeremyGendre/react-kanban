@@ -3,6 +3,7 @@ import {FormEvent, useState} from "react";
 import PlusIcon from "../icons/PlusIcon";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
+import DeleteIcon from "../icons/DeleteIcon";
 
 interface NewKanbanProps {
     onNew: (column: ColumnType) => void
@@ -36,7 +37,10 @@ export default function NewKanban({onNew}:NewKanbanProps){
             </div>
             <div className="d-flex gap-1">
                 <Button small type="submit">Ajouter</Button>
-                <Button small type="button" onClick={() => setShowForm(false)}>Annuler</Button>
+                <Button iconButton uncolored small type="button"
+                        onClick={() => setShowForm(false)} className="bg-whitesmoke">
+                    <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
+                </Button>
             </div>
         </form>
     );

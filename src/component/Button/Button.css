@@ -35,3 +35,5 @@
 .button:active{
     transform: scale(0.95);
 }
+
+.bg-whitesmoke{background-color: whitesmoke;}
