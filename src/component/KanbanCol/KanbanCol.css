@@ -3,7 +3,8 @@
     border-radius: 3px;
     box-shadow: 0 0 4px rgba(0,0,0,0.3);
     position: relative;
-    transform: translateX(0); /* c'est pour que le position fixed plus bas fonctionne. Sinon le fixed est en fonction de la window. @see https://developer.mozilla.org/fr/docs/Web/CSS/position */
+    display: flex;
+    flex-direction: column;
 }
 
 .kanban-col-title{
@@ -18,14 +19,14 @@
 
 .kanban-col-item-container{
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex-direction: column;
     padding: 0.5em;
     gap:0.5em;
+    flex:1;
 }
 
 .kanban-new-item-form{
-    position: fixed;
     padding: 0.5em;
     bottom:0;
 }
