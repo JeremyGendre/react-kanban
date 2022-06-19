@@ -3,15 +3,40 @@
 ## Usage
 
 ```typescript jsx
-<Kanban>
-    <Kanban.Col title="col1">
-        <Kanban.Item>item1</Kanban.Item>
-        <Kanban.Item>item2</Kanban.Item>
-    </Kanban.Col>
-    <Kanban.Col title="col2">
-        <Kanban.Item>item3</Kanban.Item>
-        <Kanban.Item>item4</Kanban.Item>
-    </Kanban.Col>
-    <Kanban.Col title="col3"/>
-</Kanban>
+import {Kanban} from "./component";
+import {useState} from "react";
+import {ColumnType} from "./model/Kanban.model";
+
+const initialCollection: ColumnType[] = [
+    {
+        title: 'test',
+        items: [
+            {content : 'item 1'},
+            {content : 'item 2'}
+        ]
+    },
+    {
+        title: 'test2',
+        items: [
+            {content : 'item 3'},
+            {content : 'item 4'},
+            {content : 'item 5'}
+        ]
+    },
+    {
+        title: 'test3',
+        items: [
+            {content : 'item 6'}
+        ]
+    }
+];
+
+export default function App(){
+    const [collection, setCollection] = useState<ColumnType[]>(initialCollection);
+    return (
+        <div>
+            <Kanban collection={collection}/>
+        </div>
+    );
+}
 ```
