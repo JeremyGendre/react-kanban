@@ -26,8 +26,9 @@ export default function Kanban({collection, onChange = () => {}}:KanbanProps){
                     title={column.title}
                     onDelete={() => {
                        setKanban(prev => {
-                           prev.splice(index,1);
-                           return [...prev];
+                           /*prev.splice(index,1);
+                           return [...prev];*/
+                           return prev.filter((col, colIndex) => colIndex !== index);
                        })
                     }}
                     onNewItem={(value:string) => {
@@ -38,7 +39,15 @@ export default function Kanban({collection, onChange = () => {}}:KanbanProps){
                     }}
                 >
                     {column.items.map((item, itemIndex) => (
-                        <KanbanItem key={`kanban-col-${index}-item-${itemIndex}`}>
+                        <KanbanItem
+                            key={`kanban-col-${index}-item-${itemIndex}`}
+                            onDelete={() => {
+                                setKanban(prev => prev.map((col,colIndex) => {
+                                    if(colIndex === index) return {...col, items: col.items.filter((i,iIndex) => iIndex !== itemIndex)};
+                                    return col;
+                                }))
+                            }}
+                        >
                             {item.content}
                         </KanbanItem>
                     ))}

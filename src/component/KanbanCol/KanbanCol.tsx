@@ -1,12 +1,9 @@
 import './KanbanCol.css';
-import {FormEvent, PropsWithChildren, useState} from "react";
+import {PropsWithChildren, useState} from "react";
 import DeleteIcon from "../icons/DeleteIcon";
 import Button from "../Button/Button";
 import PlusIcon from "../icons/PlusIcon";
-import Input from "../Input/Input";
-import CheckIcon from "../icons/CheckIcon";
 import NewItemForm from "../KanbanItem/NewItemForm";
-
 
 interface KanbanColProps {
     title: string;
@@ -16,7 +13,6 @@ interface KanbanColProps {
 
 export default function KanbanCol({children, title, onDelete, onNewItem}: PropsWithChildren<KanbanColProps>){
     const [showForm, setShowForm] = useState(false);
-
 
     return (
         <div className="kanban-col">

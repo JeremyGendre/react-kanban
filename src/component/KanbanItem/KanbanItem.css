@@ -4,7 +4,23 @@
     cursor: pointer;
     padding: 0.5em;
     transition: all 0.15s ease-in-out;
+    position: relative;
 }
 .kanban-item:hover{
     background-color: #f8f8f8;
+}
+.kanban-item:hover > .kanban-item-delete{
+    visibility: visible;
+    opacity: 1;
+}
+
+.kanban-item-delete{
+    position: absolute;
+    right:2px;
+    transition: all 0.15s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    top:0;
+    height:100%;
+    display: flex;
 }
