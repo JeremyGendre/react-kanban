@@ -31,7 +31,7 @@ export default function DraggableContextProvider({children}: PropsWithChildren<{
     };
 
     const drop = (targetColId: number) => {
-        if(!item || !source || !itemIndex) return;
+        if(item === null || source === null || itemIndex === null) return;
         if(targetColId === source) return;
         setDropObject({item, itemIndex, source, target: targetColId});
     };

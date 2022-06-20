@@ -9,14 +9,14 @@ import {ColumnType} from "./model/Kanban.model";
 
 const initialCollection: ColumnType[] = [
     {
-        title: 'test',
+        title: 'backlog',
         items: [
             {content : 'item 1'},
             {content : 'item 2'}
         ]
     },
     {
-        title: 'test2',
+        title: 'to do',
         items: [
             {content : 'item 3'},
             {content : 'item 4'},
@@ -24,10 +24,14 @@ const initialCollection: ColumnType[] = [
         ]
     },
     {
-        title: 'test3',
+        title: 'in progress',
         items: [
             {content : 'item 6'}
         ]
+    },
+    {
+        title: 'done',
+        items: []
     }
 ];
 
