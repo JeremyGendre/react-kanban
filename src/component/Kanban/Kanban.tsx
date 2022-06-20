@@ -21,12 +21,22 @@ export default function Kanban({collection, onChange = () => {}}:KanbanProps){
     return (
         <div className="kanban">
             {kanban.map((column, index) => (
-                <KanbanCol key={`kanban-col-${index}-${column.title}`} title={column.title} onDelete={() => {
-                    setKanban(prev => {
-                        prev.splice(index,1);
-                        return [...prev];
-                    })
-                }}>
+                <KanbanCol
+                    key={`kanban-col-${index}-${column.title}`}
+                    title={column.title}
+                    onDelete={() => {
+                       setKanban(prev => {
+                           prev.splice(index,1);
+                           return [...prev];
+                       })
+                    }}
+                    onNewItem={(value:string) => {
+                        setKanban(prev => prev.map((col,colIndex) => {
+                            if(colIndex === index) return {...col, items: [...col.items, {content: value}]};
+                            return col;
+                        }))
+                    }}
+                >
                     {column.items.map((item, itemIndex) => (
                         <KanbanItem key={`kanban-col-${index}-item-${itemIndex}`}>
                             {item.content}

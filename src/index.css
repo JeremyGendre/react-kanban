@@ -66,6 +66,8 @@ code {
 }
 .my-auto{margin-top: auto; margin-bottom: auto;}
 .mx-auto{margin-left: auto; margin-right: auto;}
+.ml-auto{margin-left: auto;}
+.mr-auto{margin-right: auto;}
 .mx-1 {
   margin-left: 0.5em;
   margin-right: 0.5em;

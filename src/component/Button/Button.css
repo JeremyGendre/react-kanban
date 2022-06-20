@@ -28,7 +28,7 @@
 }
 
 .button:not(.button-uncolored):hover{
-    background-color: white;
+    background-color: transparent;
     color: var(--primary);
 }
 
