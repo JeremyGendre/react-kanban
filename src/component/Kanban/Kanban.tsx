@@ -5,6 +5,7 @@ import KanbanItem from "../KanbanItem/KanbanItem";
 import {useEffect, useState} from "react";
 import NewKanban from "./NewKanban";
 import DraggableContextProvider, {useDraggable} from "../../context/DraggableContext";
+import Modal from "../Modal/Modal";
 
 export interface KanbanProps {
     collection: ColumnType[],
@@ -13,6 +14,7 @@ export interface KanbanProps {
 
 function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
     const [kanban, setKanban] = useState(collection);
+    const [modalOpened, setModalOpened] = useState(false);
     const {dropObject} = useDraggable();
 
     useEffect(() => {
@@ -29,6 +31,18 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
         }))
     }, [dropObject]);
 
+    const handleDeleteCol = (column: ColumnType, index: number) => {
+        if(column.items.length > 0){
+            setModalOpened(true);
+        }else{
+            deleteCol(index);
+        }
+    };
+
+    const deleteCol = (index:number) => {
+        setKanban(prev => prev.filter((col, colIndex) => colIndex !== index))
+    };
+
     return (
         <div className="kanban">
             {kanban.map((column, index) => (
@@ -36,9 +50,7 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
                     key={`kanban-col-${index}-${column.title}`}
                     id={index}
                     title={column.title}
-                    onDelete={() => {
-                       setKanban(prev => prev.filter((col, colIndex) => colIndex !== index))
-                    }}
+                    onDelete={() => handleDeleteCol(column, index)}
                     onNewItem={(value:string) => {
                         setKanban(prev => prev.map((col,colIndex) => {
                             if(colIndex === index) return {...col, items: [...col.items, {content: value}]};
@@ -64,6 +76,9 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
                     ))}
                 </KanbanCol>
             ))}
+            <Modal opened={modalOpened} onClose={() => setModalOpened(false)}>
+                test
+            </Modal>
             <NewKanban onNew={(newCol) => setKanban(prev => [...prev, newCol])}/>
         </div>
     );

@@ -1,8 +1,8 @@
 import {PropsWithChildren, useEffect, useRef, useState} from "react";
-import {useClickAway} from "@jeremygendre/react-custom-hooks";
 import './Modal.css';
 import DeleteIcon from "../icons/DeleteIcon";
 import Button from "../Button/Button";
+import {useClickAway} from "../../hook/useClickAway";
 
 export interface ModalContentProps{
     onClose: () => void;
@@ -31,9 +31,6 @@ function ModalContent(props: PropsWithChildren<ModalContentProps>){
             <div ref={modalRef} className="modal">
                 <Button className="modal-close-btn" title="Delete this column" uncolored small iconButton onClick={props.onClose}>
                     <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
-                </Button>
-                <Button onClick={props.onClose} className={`p-1`}>
-                    <DeleteIcon style={{width:'1em'}}/>
                 </Button>
                 {props.children}
             </div>
