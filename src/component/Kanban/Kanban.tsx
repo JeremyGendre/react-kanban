@@ -21,7 +21,12 @@ export default function Kanban({collection, onChange = () => {}}:KanbanProps){
     return (
         <div className="kanban">
             {kanban.map((column, index) => (
-                <KanbanCol key={`kanban-col-${index}-${column.title}`} title={column.title}>
+                <KanbanCol key={`kanban-col-${index}-${column.title}`} title={column.title} onDelete={() => {
+                    setKanban(prev => {
+                        prev.splice(index,1);
+                        return [...prev];
+                    })
+                }}>
                     {column.items.map((item, itemIndex) => (
                         <KanbanItem key={`kanban-col-${index}-item-${itemIndex}`}>
                             {item.content}

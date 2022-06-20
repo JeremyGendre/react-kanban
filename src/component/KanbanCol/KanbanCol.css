@@ -28,4 +28,14 @@
 .kanban-new-item-form{
     padding: 0.5em;
     bottom:0;
+    transition: all 0.15s ease-in-out;
+    cursor:pointer;
+    display:flex;
+    justify-content: center;
+    gap:0.5em;
+    background-color: #d4d4d4;
+}
+
+.kanban-new-item-form:hover{
+    background-color: #c9c9c9;
 }
