@@ -18,7 +18,7 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
     useEffect(() => {
         console.log(kanban);
         onChange(kanban);
-    },[kanban]);
+    },[kanban, onChange]);
 
     useEffect(() => {
         if(!dropObject) return;

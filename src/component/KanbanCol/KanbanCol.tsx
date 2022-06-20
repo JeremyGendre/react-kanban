@@ -21,7 +21,9 @@ export default function KanbanCol({children, id, title, onDelete, onNewItem}: Pr
         <div className="kanban-col">
             <div className="kanban-col-title">
                 <div className="my-auto">{title}</div>
-                <Button title="Delete this column" uncolored small iconButton onClick={onDelete}><DeleteIcon className="my-auto" style={{width:'1.2em'}}/></Button>
+                <Button title="Delete this column" uncolored small iconButton onClick={onDelete}>
+                    <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
+                </Button>
             </div>
             <div
                 className="kanban-col-item-container"
