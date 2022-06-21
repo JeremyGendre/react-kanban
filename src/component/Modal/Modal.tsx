@@ -2,7 +2,7 @@ import {PropsWithChildren, useEffect, useRef, useState} from "react";
 import './Modal.css';
 import DeleteIcon from "../icons/DeleteIcon";
 import Button from "../Button/Button";
-import {useClickAway} from "../../hook/useClickAway";
+import {useClickAway} from "@jeremygendre/react-custom-hooks";
 
 export interface ModalContentProps{
     onClose: () => void;
