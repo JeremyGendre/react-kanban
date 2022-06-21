@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import NewKanban from "./NewKanban";
 import DraggableContextProvider, {useDraggable} from "../../context/DraggableContext";
 import Modal from "../Modal/Modal";
+import RemoveColSelect from "./RemoveColSelect";
 
 export interface KanbanProps {
     collection: ColumnType[],
@@ -14,7 +15,7 @@ export interface KanbanProps {
 
 function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
     const [kanban, setKanban] = useState(collection);
-    const [modalOpened, setModalOpened] = useState(false);
+    const [colDeleting, setColDeleting] = useState<number|null>(null);
     const {dropObject} = useDraggable();
 
     useEffect(() => {
@@ -33,7 +34,7 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
 
     const handleDeleteCol = (column: ColumnType, index: number) => {
         if(column.items.length > 0){
-            setModalOpened(true);
+            setColDeleting(index);
         }else{
             deleteCol(index);
         }
@@ -49,6 +50,7 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
                 <KanbanCol
                     key={`kanban-col-${index}-${column.title}`}
                     id={index}
+                    deletable={kanban.length > 1}
                     title={column.title}
                     onDelete={() => handleDeleteCol(column, index)}
                     onNewItem={(value:string) => {
@@ -76,8 +78,22 @@ function KanbanContainer({collection, onChange = () => {}}:KanbanProps){
                     ))}
                 </KanbanCol>
             ))}
-            <Modal opened={modalOpened} onClose={() => setModalOpened(false)}>
-                test
+            <Modal opened={colDeleting !== null} onClose={() => setColDeleting(null)}>
+                <RemoveColSelect
+                    colDeleting={colDeleting}
+                    options={kanban}
+                    onConfirm={(newColIndex: number) => {
+                        setKanban(prev => {
+                            const deletingCol = prev[colDeleting!];
+                            let newCol = prev[newColIndex];
+                            newCol = {...newCol, items: [...newCol.items, ...deletingCol.items]};
+                            prev[newColIndex] = newCol;
+                            prev.splice(colDeleting!, 1);
+                            return [...prev];
+                        });
+                        setColDeleting(null);
+                    }}
+                />
             </Modal>
             <NewKanban onNew={(newCol) => setKanban(prev => [...prev, newCol])}/>
         </div>

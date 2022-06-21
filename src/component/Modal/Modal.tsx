@@ -29,7 +29,7 @@ function ModalContent(props: PropsWithChildren<ModalContentProps>){
     return (
         <div className="modal-container">
             <div ref={modalRef} className="modal">
-                <Button className="modal-close-btn" title="Delete this column" uncolored small iconButton onClick={props.onClose}>
+                <Button className="modal-close-btn bg-whitesmoke" title="Delete this column" uncolored small iconButton onClick={props.onClose}>
                     <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
                 </Button>
                 {props.children}

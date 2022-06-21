@@ -10,6 +10,9 @@
     display: flex;
     gap: 0.5em;
 }
+.button:disabled{
+    opacity: 0.5;
+}
 .button-small{
     padding: 0.4em 0.6em;
 }
@@ -23,16 +26,16 @@
 }
 
 
-.button-uncolored:hover{
+.button-uncolored:not(:disabled):hover{
     background-color: #d4d4d4;
 }
 
-.button:not(.button-uncolored):hover{
+.button:not(.button-uncolored):not(:disabled):hover{
     background-color: transparent;
     color: var(--primary);
 }
 
-.button:active{
+.button:not(:disabled):active{
     transform: scale(0.95);
 }
 

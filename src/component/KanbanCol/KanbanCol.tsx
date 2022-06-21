@@ -8,12 +8,13 @@ import {useDraggable} from "../../context/DraggableContext";
 
 interface KanbanColProps {
     title: string;
+    deletable?: boolean;
     id: number;
     onDelete: () => void;
     onNewItem: (value: string) => void;
 }
 
-export default function KanbanCol({children, id, title, onDelete, onNewItem}: PropsWithChildren<KanbanColProps>){
+export default function KanbanCol({children,deletable, id, title, onDelete, onNewItem}: PropsWithChildren<KanbanColProps>){
     const [showForm, setShowForm] = useState(false);
     const {drop} = useDraggable();
 
@@ -21,9 +22,11 @@ export default function KanbanCol({children, id, title, onDelete, onNewItem}: Pr
         <div className="kanban-col">
             <div className="kanban-col-title">
                 <div className="my-auto">{title}</div>
-                <Button title="Delete this column" uncolored small iconButton onClick={onDelete}>
-                    <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
-                </Button>
+                {deletable && (
+                    <Button title="Delete this column" uncolored small iconButton onClick={onDelete}>
+                        <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
+                    </Button>
+                )}
             </div>
             <div
                 className="kanban-col-item-container"
