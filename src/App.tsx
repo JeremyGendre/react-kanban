@@ -13,7 +13,7 @@ const initialCollection: ColumnType[] = [
     {
         title: 'to do',
         items: [
-            {content : 'item 3'},
+            {content : 'item 3  ugfd ghdsfh dsfh gfdshgdfsgh fdshjg sdfs'},
             {content : 'item 4'},
             {content : 'item 5'}
         ]

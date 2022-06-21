@@ -21,7 +21,7 @@ export default function KanbanCol({children,deletable, id, title, onDelete, onNe
     return (
         <div className="kanban-col">
             <div className="kanban-col-title">
-                <div className="my-auto">{title}</div>
+                <div className="my-auto flex-1">{title}</div>
                 {deletable && (
                     <Button title="Delete this column" uncolored small iconButton onClick={onDelete}>
                         <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
@@ -32,8 +32,11 @@ export default function KanbanCol({children,deletable, id, title, onDelete, onNe
                 className="kanban-col-item-container"
                 onDrop={e => {
                     e.preventDefault();
+                    e.currentTarget.classList.remove('dashed-col');
                     drop(id);
                 }}
+                onDragEnter={e => e.currentTarget.classList.add('dashed-col')}
+                onDragLeave={e => e.currentTarget.classList.remove('dashed-col')}
                 onDragOver={e => e.preventDefault()}
             >
                 {children}
