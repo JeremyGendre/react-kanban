@@ -4,7 +4,8 @@ import {ColumnType} from "../model/Kanban.model";
 
 interface KanbanContextProps {
     kanban: ColumnType[]
-    setKanban: Dispatch<SetStateAction<ColumnType[]>>
+    setKanban: Dispatch<SetStateAction<ColumnType[]>>,
+    deleteColumn: (index:number) => void
 }
 
 interface Props {
@@ -24,8 +25,15 @@ export default function KanbanContextProvider({children, collection, onChange}: 
         onChange?.(kanban);
     },[kanban, onChange]);
 
+    const deleteColumn = (index:number) => {
+        setKanban(prev => {
+            prev.splice(index,1);
+            return [...prev];
+        })
+    };
+
     return (
-        <KanbanContext.Provider value={{kanban, setKanban}}>
+        <KanbanContext.Provider value={{kanban, setKanban, deleteColumn}}>
             {children}
         </KanbanContext.Provider>
     );

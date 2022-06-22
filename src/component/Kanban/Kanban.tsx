@@ -9,17 +9,15 @@ import Modal from "../Modal/Modal";
 import RemoveColSelect from "./RemoveColSelect";
 import KanbanContextProvider, {useKanban} from "../../context/KanbanContext";
 
-interface OnChangeInterface{
+
+export interface KanbanProps{
+    collection: ColumnType[]
     onChange?: (collection: ColumnType[]) => void
 }
 
-export interface KanbanProps extends OnChangeInterface{
-    collection: ColumnType[]
-}
-
-function KanbanContainer({onChange = () => {}}:OnChangeInterface){
+function KanbanContainer(){
     const [colDeleting, setColDeleting] = useState<number|null>(null);
-    const {kanban, setKanban} = useKanban();
+    const {kanban, setKanban, deleteColumn} = useKanban();
     const {dropObject} = useDraggable();
 
     useEffect(() => {
@@ -35,12 +33,8 @@ function KanbanContainer({onChange = () => {}}:OnChangeInterface){
         if(column.items.length > 0){
             setColDeleting(index);
         }else{
-            deleteCol(index);
+            deleteColumn(index);
         }
-    };
-
-    const deleteCol = (index:number) => {
-        setKanban(prev => prev.filter((col, colIndex) => colIndex !== index))
     };
 
     return (
@@ -99,11 +93,11 @@ function KanbanContainer({onChange = () => {}}:OnChangeInterface){
     );
 }
 
-export default function Kanban({collection, onChange = () => {}}:KanbanProps){
+export default function Kanban({collection, onChange}:KanbanProps){
     return (
-        <KanbanContextProvider collection={collection}>
+        <KanbanContextProvider collection={collection} onChange={onChange}>
             <DraggableContextProvider>
-                <KanbanContainer onChange={onChange}/>
+                <KanbanContainer/>
             </DraggableContextProvider>
         </KanbanContextProvider>
     )
