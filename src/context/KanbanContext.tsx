@@ -26,10 +26,7 @@ export default function KanbanContextProvider({children, collection, onChange}: 
     },[kanban, onChange]);
 
     const deleteColumn = (index:number) => {
-        setKanban(prev => {
-            prev.splice(index,1);
-            return [...prev];
-        })
+        setKanban(prev => prev.filter((c, i) => i !== index));
     };
 
     return (

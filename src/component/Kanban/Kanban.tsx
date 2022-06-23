@@ -23,7 +23,10 @@ function KanbanContainer(){
     useEffect(() => {
         if(!dropObject) return;
         setKanban(prev => prev.map((col, colIndex) => {
-            if(colIndex === dropObject.source) return {...col, items: col.items.filter((i, iIndex) => iIndex !== dropObject.itemIndex)};
+            if(colIndex === dropObject.source) {
+                col.items.splice(dropObject.itemIndex,1);
+                return {...col, items: [...col.items]};
+            }
             if(colIndex === dropObject.target) return {...col, items: [...col.items, dropObject.item]};
             return col;
         }))
@@ -61,7 +64,9 @@ function KanbanContainer(){
                             colId={index}
                             onDelete={() => {
                                 setKanban(prev => prev.map((col,colIndex) => {
-                                    if(colIndex === index) return {...col, items: col.items.filter((i,iIndex) => iIndex !== itemIndex)};
+                                    if(colIndex === index) {
+                                        return {...col, items: col.items.filter((i,iIndex) => iIndex !== itemIndex)};
+                                    }
                                     return col;
                                 }))
                             }}
