@@ -16,8 +16,10 @@
 }
 .kanban-col-title span{
     word-break: break-word;
+    border-top-left-radius: 3px;
 }
 .kanban-col-title span, .kanban-col-title form{
+    transition: all 0.15s ease-in-out;
     padding:0.5em 0.5em 0.5em 1em;
 }
 .kanban-col-title span:hover{
