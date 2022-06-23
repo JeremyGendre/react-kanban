@@ -1,7 +1,8 @@
 import './Input.css';
+import {ForwardedRef, forwardRef} from "react";
 
-export default function Input({className, ...other}:Partial<JSX.IntrinsicElements['input']>){
-    return (
-        <input className={`input ${className}`} {...other}/>
-    );
-}
+const Input = forwardRef<HTMLInputElement,Partial<JSX.IntrinsicElements['input']>>(({className, ...other}, ref) => (
+    <input ref={ref} className={`input ${className}`} {...other}/>
+));
+
+export default Input;

@@ -1,5 +1,5 @@
 import './KanbanCol.css';
-import {FormEvent, PropsWithChildren, useState} from "react";
+import {FormEvent, PropsWithChildren, useEffect, useRef, useState} from "react";
 import DeleteIcon from "../icons/DeleteIcon";
 import Button from "../Button/Button";
 import PlusIcon from "../icons/PlusIcon";
@@ -20,7 +20,8 @@ interface KanbanColProps {
 export default function KanbanCol({children,deletable, id, title, onDelete, onNewItem}: PropsWithChildren<KanbanColProps>){
     const [showForm, setShowForm] = useState(false);
     const [showEditForm, setShowEditForm] = useState(false);
-    const [newTitle, setNewTitle] = useState('');
+    const [newTitle, setNewTitle] = useState(title);
+    const inputRef = useRef<HTMLInputElement>(null);
     const {drop} = useDraggable();
     const {setKanban} = useKanban();
 
@@ -34,6 +35,12 @@ export default function KanbanCol({children,deletable, id, title, onDelete, onNe
         setShowEditForm(false);
     };
 
+    useEffect(() => {
+        if(showEditForm){
+            inputRef.current!.select();
+        }
+    },[showEditForm]);
+
     return (
         <div className="kanban-col">
             <div className="kanban-col-title">
@@ -41,20 +48,20 @@ export default function KanbanCol({children,deletable, id, title, onDelete, onNe
                     {showEditForm ? (
                         <form onSubmit={handleSubmit}>
                             <div className="w-full d-flex">
-                                <Input required autoFocus className="flex-1" value={newTitle} onChange={e => setNewTitle(e.currentTarget.value)}/>
+                                <Input ref={inputRef} required autoFocus className="flex-1" value={newTitle} onChange={e => setNewTitle(e.currentTarget.value)}/>
                             </div>
                             <div className="d-flex">
                                 <Button type="submit" title="Enregistrer" uncolored small iconButton>
                                     <CheckIcon className="my-auto" style={{width:'1.2em'}}/>
                                 </Button>
-                                <Button type="button" title="Enregistrer" uncolored small iconButton onClick={() => {setNewTitle(''); setShowEditForm(false);}}>
+                                <Button type="button" title="Enregistrer" uncolored small iconButton onClick={() => {setNewTitle(title); setShowEditForm(false);}}>
                                     <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
                                 </Button>
                             </div>
                         </form>
                     ) : (
                         <div className="d-flex">
-                            <div className="flex-1 my-auto cursor-pointer" onClick={() => setShowEditForm(true)}>{title}</div>
+                            <span className="flex-1 my-auto cursor-pointer" onClick={() => setShowEditForm(true)}>{title}</span>
                             {deletable && (
                                 <Button title="Delete this column" uncolored small iconButton onClick={onDelete}>
                                     <DeleteIcon className="my-auto" style={{width:'1.2em'}}/>
